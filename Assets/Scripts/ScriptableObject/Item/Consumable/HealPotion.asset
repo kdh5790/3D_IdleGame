@@ -16,6 +16,13 @@ MonoBehaviour:
   description: "\uCCB4\uB825\uC744 \uBAA8\uB450 \uD68C\uBCF5\uC2DC\uCF1C\uC8FC\uB294
     \uD3EC\uC158\uC785\uB2C8\uB2E4."
   icon: {fileID: 0}
-  type: 0
+  item:
+    rid: 1401560139567464454
   effectValue: 1
   duration: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1401560139567464454
+      type: {class: HealthRecoveryPotion, ns: , asm: Assembly-CSharp}
+      data: 

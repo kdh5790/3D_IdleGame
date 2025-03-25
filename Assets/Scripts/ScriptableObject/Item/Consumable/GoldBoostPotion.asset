@@ -16,6 +16,13 @@ MonoBehaviour:
   description: "1\uBD84\uAC04 \uACE8\uB4DC \uD68D\uB4DD\uB7C9\uC744 50% \uC99D\uAC00\uC2DC\uCF1C\uC8FC\uB294
     \uD3EC\uC158\uC785\uB2C8\uB2E4."
   icon: {fileID: 0}
-  type: 0
+  item:
+    rid: 1401560139567464453
   effectValue: 1.5
   duration: 60
+  references:
+    version: 2
+    RefIds:
+    - rid: 1401560139567464453
+      type: {class: GoldBoostPotion, ns: , asm: Assembly-CSharp}
+      data: 
