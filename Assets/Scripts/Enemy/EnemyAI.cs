@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField]private EnemyAnimationData animationData;
     [SerializeField] private float attackRange = 2f;
-    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float attackCooldown = 1.5f;
     private float attackTimer = 0f;
 
 
@@ -73,6 +73,7 @@ public class EnemyAI : MonoBehaviour
     public void ResetAttack()
     {
         StopAnimation(animationData.AttackParameterHash);
+
     }
 
     public void StartAnimation(int animatorHash)
