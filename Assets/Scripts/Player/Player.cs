@@ -8,23 +8,22 @@ public class Player : Singleton<Player>
     public PlayerAI AI { get; private set; }
     [field:SerializeField] public PlayerAnimationData AnimationData { get; private set; }
 
-    private Animator anim;
+    public Animator Anim;
 
     private void Awake()
     {
         Status = GetComponent<PlayerStatus>();
         AI = GetComponent<PlayerAI>();
-
-        anim = GetComponentInChildren<Animator>();
+        Anim = GetComponent<Animator>();
     }
 
     public void StartAnimation(int animatorHash)
     {
-        anim.SetBool(animatorHash, true);
+        Anim.SetBool(animatorHash, true);
     }
 
     public void StopAnimation(int animatorHash)
     {
-        anim.SetBool(animatorHash, false);
+        Anim.SetBool(animatorHash, false);
     }
 }

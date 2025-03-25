@@ -11,7 +11,6 @@ public class EnemySpawner : Singleton<EnemySpawner>
     private void Awake()
     {
         Initialized();
-        Player.Instance.AI.FindTarget();
     }
 
     public void Initialized()

@@ -451,6 +451,8 @@ MonoBehaviour:
     runPrameterName: Run
     attackPrameterName: '@Attack'
     comboAttackPrameterName: ComboAttack
+    comboPrameterName: Combo
+  anim: {fileID: 0}
 --- !u!114 &978353355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778f26bd04563ba4895526962772f4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 2
+  attackCooldown: 2
 --- !u!1 &1151714634
 GameObject:
   m_ObjectHideFlags: 0
