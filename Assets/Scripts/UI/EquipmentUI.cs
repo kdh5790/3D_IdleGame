@@ -76,17 +76,28 @@ public class EquipmentUI : MonoBehaviour
             currentWeaponImage.enabled = true;
             currentWeaponImage.sprite = selectSlot.SlotItem.icon;
             currentWeaponItem = selectSlot.SlotItem;
-            selectSlot.Equip();
-            ChangeButtonText(true);
+
+            foreach (var slot in slots)
+            {
+                if(slot.SlotItem != null && slot.SlotItem.type == EquipmentItemData.EquipmentType.Weapon)
+                slot.UnEquip();
+            }
         }
         else
         {
             currentArmorImage.enabled = true;
             currentArmorImage.sprite = selectSlot.SlotItem.icon;
             currentArmorItem = selectSlot.SlotItem;
-            selectSlot.Equip();
-            ChangeButtonText(true);
+
+            foreach (var slot in slots)
+            {
+                if (slot.SlotItem != null && slot.SlotItem.type == EquipmentItemData.EquipmentType.Armor)
+                    slot.UnEquip();
+            }
         }
+
+        selectSlot.Equip();
+        ChangeButtonText(true);
     }
 
     private void UnEquipItem()
