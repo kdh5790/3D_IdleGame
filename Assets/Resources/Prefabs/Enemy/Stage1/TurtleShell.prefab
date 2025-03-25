@@ -674,6 +674,7 @@ GameObject:
   - component: {fileID: 7634775246304473858}
   - component: {fileID: 2383124317144911974}
   - component: {fileID: 5097330345117672676}
+  - component: {fileID: -3418005587833400917}
   m_Layer: 0
   m_Name: TurtleShell
   m_TagString: Untagged
@@ -743,6 +744,25 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-3418005587833400917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6054275666997509063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d817b4d8f70d0dd4eb0c9cce96b24312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationData:
+    idlePrameterName: Idle
+    runPrameterName: Run
+    attackPrameterName: Attack
+    dieParameterName: Die
+  attackRange: 2
+  attackCooldown: 1
 --- !u!1 &6133461275654057540
 GameObject:
   m_ObjectHideFlags: 0
