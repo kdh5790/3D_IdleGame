@@ -86,7 +86,10 @@ public class EquipmentUI : MonoBehaviour
         if (slot != null && slot.SlotItem != null)
         {
             description.SetActive(true);
-            descriptionText.text = slot.SlotItem.description;
+            descriptionText.text = $"{slot.SlotItem.description}";
+            descriptionText.text += slot.SlotItem.healthBonus == 0 ? null : $"\n최대 체력 증가:{slot.SlotItem.healthBonus}%";
+            descriptionText.text += slot.SlotItem.attackPowerBonus == 0 ? null : $"\n공격력 증가:{slot.SlotItem.attackPowerBonus}%";
+            descriptionText.text += slot.SlotItem.goldBonus == 0 ? null : $"\n골드 획득량 증가:{slot.SlotItem.goldBonus}%";
             selectSlot.SetSelected(true);
         }
         else
