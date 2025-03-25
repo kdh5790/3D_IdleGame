@@ -1,9 +1,9 @@
 public class UIManager : Singleton<UIManager>
 {
-    public StatusUI statusUi;
+    public StatusViewUI statusViewUi;
 
     void Start()
     {
-        statusUi = GetComponentInChildren<StatusUI>();
+        statusViewUi = GetComponentInChildren<StatusViewUI>();
     }
 }
