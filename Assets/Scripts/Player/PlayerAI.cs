@@ -108,7 +108,7 @@ public class PlayerAI : MonoBehaviour
         player.StartAnimation(animationData.IdleParameterHash);
     }
 
-    public void ResetComboAttack()
+    public void ResetAttack()
     {
         player.Anim.SetBool(animationData.ComboAttackParameterHash, false); 
     }
