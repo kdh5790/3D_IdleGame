@@ -18,18 +18,16 @@ public class MainUIButtons : MonoBehaviour
 
     private void OnClickInventoryButton()
     {
-        Debug.Log("인벤토리 오픈");
+        UIManager.Instance.AddCurrentOpenUI(UIManager.Instance.inventoryUI.gameObject);
     }
 
     private void OnClickEquipmentButton()
     {
-        Debug.Log("장비창 오픈");
-
+        UIManager.Instance.AddCurrentOpenUI(UIManager.Instance.equipmentUI.gameObject);
     }
 
     private void OnClickStatusButton()
     {
-        Debug.Log("상태창 오픈");
-
+        UIManager.Instance.AddCurrentOpenUI(UIManager.Instance.statusUI.gameObject);
     }
 }
