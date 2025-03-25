@@ -10,25 +10,17 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private Image frameImage;
     [SerializeField] private Image itemImage;
+    [SerializeField] private GameObject isEquip;
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (slotItem != null && UIManager.Instance.equipmentUI.selectSlot != this)
         {
             UIManager.Instance.equipmentUI.SetDescription(this);
-            frameImage.color = Color.green;
         }
         else if (UIManager.Instance.equipmentUI.selectSlot == this)
         {
             UIManager.Instance.equipmentUI.SetDescription();
-            frameImage.color = Color.white;
-            UIManager.Instance.equipmentUI.selectSlot = null;
-        }
-        else if (slotItem != null && UIManager.Instance.equipmentUI.selectSlot == null)
-        {
-            UIManager.Instance.equipmentUI.SetDescription(this);
-            frameImage.color = Color.green;
-            UIManager.Instance.equipmentUI.selectSlot = this;
         }
     }
 
@@ -51,10 +43,17 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         slotItem = null;
         itemImage.enabled = false;
         frameImage.color = Color.white;
+
+        if (isEquip != null)
+            isEquip.SetActive(false);
     }
 
     public void SetSelected(bool isSelected)
     {
         frameImage.color = isSelected ? Color.green : Color.white;
     }
+
+    public bool GetIsEquip() => isEquip.activeSelf;
+    public void Equip() => isEquip.SetActive(true);
+    public void UnEquip() => isEquip.SetActive(false);
 }
