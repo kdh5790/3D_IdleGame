@@ -15,7 +15,6 @@ public class PlayerAnimationData
     public int IdleParameterHash { get; private set; }
     public int RunParameterHash { get; private set; }
 
-
     public int AttackParameterHash { get; private set; }
     public int ComboAttackParameterHash { get; private set; }
 

@@ -1,20 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : Singleton<EnemySpawner>
 {
     [SerializeField] private List<GameObject> enemyPrefabs = new List<GameObject>();
     [SerializeField] private List<RoomBehaviour> rooms = new List<RoomBehaviour>();
 
-    private void Start()
+    public List<GameObject> enemies = new List<GameObject>();
+        
+    private void Awake()
     {
         Initialized();
+        Player.Instance.AI.FindTarget();
     }
 
     public void Initialized()
     {
         enemyPrefabs.AddRange(Resources.LoadAll<GameObject>($"Prefabs/Enemy/Stage{1}"));
         rooms.AddRange(GetComponentsInChildren<RoomBehaviour>());
+        enemies.Clear();
 
         foreach (var room in rooms)
         {
@@ -26,6 +30,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], room.transform.position, Quaternion.identity);
                     room.SetHasEnemy(isSpawnEnemy);
+                    enemies.Add(enemy);
                 }
             }
         }
