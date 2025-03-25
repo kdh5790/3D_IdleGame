@@ -8,7 +8,7 @@ public class PlayerAI : MonoBehaviour
     private PlayerAnimationData animationData;
 
     [SerializeField] private float attackRange = 2f; // 공격 거리
-    [SerializeField] private float attackCooldown = 2f; // 공격 쿨타임
+    [SerializeField] private float attackCooldown = 1f; // 공격 쿨타임
     private float attackTimer = 0f; // 공격 타이머
 
     private GameObject currentTarget; // 현재 타겟

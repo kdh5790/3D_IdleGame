@@ -37,7 +37,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            AddItem(ItemManager.Instance.items[0]);
+            AddItem(ItemManager.Instance.consumableItemList[0]);
         }
     }
 

@@ -56,12 +56,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         }
     }
 
-    public float Speed
-    {
-        get => speed;
-        set => speed = Mathf.Max(0, value);
-    }
-
     private void Start()
     {
         CurrentHealth = MaxHealth;

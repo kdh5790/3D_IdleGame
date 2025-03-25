@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class ItemManager : Singleton<ItemManager>
 {
-    public List<ConsumableItemData> items;
+    public List<ConsumableItemData> consumableItemList;
+    public List<EquipmentItemData> equipmentItemList;
 }
