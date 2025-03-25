@@ -11,10 +11,10 @@ public class EquipmentUI : MonoBehaviour
     public EquipmentSlot selectSlot;
 
     [Header("Current Equipment")]
-    [SerializeField] private Image currentWeaponImage;
-    [SerializeField] private EquipmentItemData currentWeaponItem;
-    [SerializeField] private Image currentArmorImage;
-    [SerializeField] private EquipmentItemData currentArmorItem;
+    [SerializeField] private Image currentEquipWeaponImage;
+    [SerializeField] private EquipmentItemData currentEquipWeaponItem;
+    [SerializeField] private Image currentEquipArmorImage;
+    [SerializeField] private EquipmentItemData currentEquipArmorItem;
 
     [Header("Description")]
     [SerializeField] private GameObject description;
@@ -34,11 +34,11 @@ public class EquipmentUI : MonoBehaviour
             }
         }
 
-        currentWeaponImage.sprite = null;
-        currentWeaponImage.enabled = false;
+        currentEquipWeaponImage.sprite = null;
+        currentEquipWeaponImage.enabled = false;
 
-        currentArmorImage.sprite = null;
-        currentArmorImage.enabled = false;
+        currentEquipArmorImage.sprite = null;
+        currentEquipArmorImage.enabled = false;
 
         // Å×½ºÆ®
         AddItem(ItemManager.Instance.equipmentItemList[0]);
@@ -71,53 +71,86 @@ public class EquipmentUI : MonoBehaviour
 
     private void EquipItem()
     {
+        PlayerStatus playerStatus = Player.Instance.Status;
+
         if (selectSlot.SlotItem.type == EquipmentItemData.EquipmentType.Weapon)
         {
-            currentWeaponImage.enabled = true;
-            currentWeaponImage.sprite = selectSlot.SlotItem.icon;
-            currentWeaponItem = selectSlot.SlotItem;
+            if (currentEquipWeaponItem != null)
+            {
+                playerStatus.EquipAttackBonusPercentage -= currentEquipWeaponItem.attackPowerBonus;
+                playerStatus.EquipGoldBonusPercentage -= currentEquipWeaponItem.goldBonus;
+            }
+
+            currentEquipWeaponImage.enabled = true;
+            currentEquipWeaponImage.sprite = selectSlot.SlotItem.icon;
+            currentEquipWeaponItem = selectSlot.SlotItem;
+
+            playerStatus.EquipAttackBonusPercentage += currentEquipWeaponItem.attackPowerBonus;
+            playerStatus.EquipGoldBonusPercentage += currentEquipWeaponItem.goldBonus;
 
             foreach (var slot in slots)
             {
-                if(slot.SlotItem != null && slot.SlotItem.type == EquipmentItemData.EquipmentType.Weapon)
-                slot.UnEquip();
+                if (slot.SlotItem != null && slot.SlotItem.type == EquipmentItemData.EquipmentType.Weapon && slot != selectSlot)
+                    slot.UnEquip();
             }
         }
         else
         {
-            currentArmorImage.enabled = true;
-            currentArmorImage.sprite = selectSlot.SlotItem.icon;
-            currentArmorItem = selectSlot.SlotItem;
+            if (currentEquipArmorItem != null)
+            {
+                playerStatus.EquipHealthBonusPercentage -= currentEquipArmorItem.healthBonus;
+                playerStatus.EquipGoldBonusPercentage -= currentEquipArmorItem.goldBonus;
+            }
+
+            currentEquipArmorImage.enabled = true;
+            currentEquipArmorImage.sprite = selectSlot.SlotItem.icon;
+            currentEquipArmorItem = selectSlot.SlotItem;
+
+            playerStatus.EquipHealthBonusPercentage += currentEquipArmorItem.healthBonus;
+            playerStatus.EquipGoldBonusPercentage += currentEquipArmorItem.goldBonus;
 
             foreach (var slot in slots)
             {
-                if (slot.SlotItem != null && slot.SlotItem.type == EquipmentItemData.EquipmentType.Armor)
+                if (slot.SlotItem != null && slot.SlotItem.type == EquipmentItemData.EquipmentType.Armor && slot != selectSlot)
                     slot.UnEquip();
             }
         }
 
         selectSlot.Equip();
         ChangeButtonText(true);
+        Player.Instance.Status.OnStatusChanged?.Invoke();
     }
 
     private void UnEquipItem()
     {
+        PlayerStatus playerStatus = Player.Instance.Status;
+
         if (selectSlot.SlotItem.type == EquipmentItemData.EquipmentType.Weapon)
         {
-            currentWeaponImage.sprite = null;
-            currentWeaponImage.enabled = false;
-            currentWeaponItem = null;
+            playerStatus.EquipHealthBonusPercentage -= currentEquipWeaponItem.healthBonus;
+            playerStatus.EquipGoldBonusPercentage -= currentEquipWeaponItem.goldBonus;
+
+            currentEquipWeaponImage.sprite = null;
+            currentEquipWeaponImage.enabled = false;
+            currentEquipWeaponItem = null;
+
             selectSlot.UnEquip();
             ChangeButtonText(selectSlot.GetIsEquip());
         }
         else
         {
-            currentArmorImage.sprite = null;
-            currentArmorImage.enabled = false;
-            currentArmorItem = null;
+            playerStatus.EquipHealthBonusPercentage -= currentEquipArmorItem.healthBonus;
+            playerStatus.EquipGoldBonusPercentage -= currentEquipArmorItem.goldBonus;
+
+            currentEquipArmorImage.sprite = null;
+            currentEquipArmorImage.enabled = false;
+            currentEquipArmorItem = null;
+
             selectSlot.UnEquip();
             ChangeButtonText(selectSlot.GetIsEquip());
         }
+
+        Player.Instance.Status.OnStatusChanged?.Invoke();
     }
 
     public void AddItem(EquipmentItemData item)

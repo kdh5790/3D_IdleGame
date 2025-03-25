@@ -8007,6 +8007,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796e073e88fd0bc489121822f41d92be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipHealthBonusPercentage: 0
+  equipAttackBonusPercentage: 0
 --- !u!114 &978353354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13080,8 +13082,10 @@ MonoBehaviour:
   closeButton: {fileID: 539274254}
   equipOrUnEquipButton: {fileID: 473176101}
   selectSlot: {fileID: 0}
-  currentWeaponImage: {fileID: 905033137}
-  currentArmorImage: {fileID: 1252489527}
+  currentEquipWeaponImage: {fileID: 905033137}
+  currentEquipWeaponItem: {fileID: 0}
+  currentEquipArmorImage: {fileID: 1252489527}
+  currentEquipArmorItem: {fileID: 0}
   description: {fileID: 367627687}
   descriptionText: {fileID: 1184091183}
 --- !u!1 &1746385696
