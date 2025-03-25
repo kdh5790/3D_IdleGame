@@ -1426,7 +1426,7 @@ MonoBehaviour:
   goldText: {fileID: 1850676782}
   healthText: {fileID: 397854205}
   atkText: {fileID: 2132083437}
-  healthImage: {fileID: 0}
+  healthImage: {fileID: 1564788899}
 --- !u!1 &1564788897
 GameObject:
   m_ObjectHideFlags: 0
