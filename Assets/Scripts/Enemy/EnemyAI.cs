@@ -5,9 +5,9 @@ public class EnemyAI : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Player player;
-    private EnemyAnimationData animationData;
     private Animator animator;
 
+    [SerializeField]private EnemyAnimationData animationData;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float attackCooldown = 1f;
     private float attackTimer = 0f;

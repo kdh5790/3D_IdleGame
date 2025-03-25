@@ -675,6 +675,7 @@ GameObject:
   - component: {fileID: 2383124317144911974}
   - component: {fileID: 5097330345117672676}
   - component: {fileID: -3418005587833400917}
+  - component: {fileID: -5828357485555812965}
   m_Layer: 0
   m_Name: TurtleShell
   m_TagString: Untagged
@@ -763,6 +764,27 @@ MonoBehaviour:
     dieParameterName: Die
   attackRange: 2
   attackCooldown: 1
+--- !u!95 &-5828357485555812965
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6054275666997509063}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: eee9d7beb7b440a58147d924f277c7ce, type: 3}
+  m_Controller: {fileID: 9100000, guid: e06396b96cffff74e98348430fc7bca0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6133461275654057540
 GameObject:
   m_ObjectHideFlags: 0
