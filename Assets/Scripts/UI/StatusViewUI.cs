@@ -26,15 +26,15 @@ public class StatusViewUI : MonoBehaviour
         UpdateHealthBar();
     }
 
-    public void SetHealthText() => healthText.text = $"{Utility.FormatBigNumber(Player.Instance.Status.CurrentHealth)}/{Utility.FormatBigNumber(Player.Instance.Status.MaxHealth)}";
+    public void SetHealthText() => healthText.text = $"{Utility.FormatBigNumber(Player.Instance.Status.CurrentHealth)}/{Utility.FormatBigNumber(Player.Instance.Status.TotalMaxHealth)}";
 
     public void SetGoldText() => goldText.text = Utility.FormatBigNumber(Player.Instance.Status.Gold);
 
-    public void SetAtkText() => atkText.text = Utility.FormatBigNumber(Player.Instance.Status.AttackPower);
+    public void SetAtkText() => atkText.text = Utility.FormatBigNumber(Player.Instance.Status.TotalAttackPower);
 
     public void UpdateHealthBar()
     {
-        float currentFloat = (float)BigInteger.Divide(Player.Instance.Status.CurrentHealth * 1000, Player.Instance.Status.MaxHealth) / 1000f;
+        float currentFloat = (float)BigInteger.Divide(Player.Instance.Status.CurrentHealth * 1000, Player.Instance.Status.TotalMaxHealth) / 1000f;
         healthImage.fillAmount = Mathf.Clamp01(currentFloat);
     }
 }

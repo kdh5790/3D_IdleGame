@@ -6,24 +6,32 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour, IDamageable
 {
-    [SerializeField] private BigInteger maxHealth = 1500; // 최대 체력 
-    private BigInteger currentHealth; // 현재 체력
+    [SerializeField] private BigInteger baseMaxHealth = 1500;
+    private BigInteger currentHealth;
 
     [SerializeField] private BigInteger gold = 0;
-    [SerializeField] private BigInteger attackPower = 200; // 공격력 
+    [SerializeField] private BigInteger baseAttackPower = 200;
+
+    [SerializeField] private float equipHealthBonusPercentage = 0f; 
+    [SerializeField] private float equipAttackBonusPercentage = 0f;
+    [SerializeField] private float equipGoldBonusPercentage = 0f;
 
     private bool isInvincibility = false;
-
     public Action OnStatusChanged;
 
-    public BigInteger MaxHealth
+    public BigInteger BaseMaxHealth
     {
-        get => maxHealth;
+        get => baseMaxHealth;
         set
         {
-            maxHealth = BigInteger.Max(0, value);
+            baseMaxHealth = BigInteger.Max(0, value);
             OnStatusChanged?.Invoke();
         }
+    }
+
+    public BigInteger TotalMaxHealth
+    {
+        get => (BigInteger)((float)BaseMaxHealth * (1 + equipHealthBonusPercentage / 100f));
     }
 
     public BigInteger CurrentHealth
@@ -46,19 +54,53 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         }
     }
 
-    public BigInteger AttackPower
+    public BigInteger BaseAttackPower
     {
-        get => attackPower;
+        get => baseAttackPower;
         set
         {
-            attackPower = BigInteger.Max(0, value);
+            baseAttackPower = BigInteger.Max(0, value);
             OnStatusChanged?.Invoke();
+        }
+    }
+
+    public BigInteger TotalAttackPower
+    {
+        get => (BigInteger)((float)BaseAttackPower * (1 + equipAttackBonusPercentage / 100f));
+    }
+
+    public float EquipHealthBonusPercentage
+    {
+        get => equipHealthBonusPercentage;
+        set
+        {
+            equipHealthBonusPercentage = Mathf.Max(0, value); 
+            OnStatusChanged?.Invoke();
+        }
+    }
+
+    public float EquipAttackBonusPercentage
+    {
+        get => equipAttackBonusPercentage;
+        set
+        {
+            equipAttackBonusPercentage = Mathf.Max(0, value); 
+            OnStatusChanged?.Invoke();
+        }
+    }
+
+    public float EquipGoldBonusPercentage
+    {
+        get => equipGoldBonusPercentage;
+        set
+        {
+            equipGoldBonusPercentage = Mathf.Max(0, value);
         }
     }
 
     private void Start()
     {
-        CurrentHealth = MaxHealth;
+        CurrentHealth = TotalMaxHealth;
     }
 
     private void Update()

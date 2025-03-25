@@ -37,8 +37,8 @@ public class StatusUI : MonoBehaviour
 
     private void UpdateUI()
     {
-        healthText.text = $"{Utility.FormatBigNumber(Player.Instance.Status.CurrentHealth)}/{Utility.FormatBigNumber(Player.Instance.Status.MaxHealth)}";
-        atkText.text = $"{Utility.FormatBigNumber(Player.Instance.Status.AttackPower)}";
+        healthText.text = $"{Utility.FormatBigNumber(Player.Instance.Status.CurrentHealth)}/{Utility.FormatBigNumber(Player.Instance.Status.TotalMaxHealth)}";
+        atkText.text = $"{Utility.FormatBigNumber(Player.Instance.Status.TotalAttackPower)}";
         goldText.text = $"{Utility.FormatBigNumber(Player.Instance.Status.Gold)}";
 
         healthPriceText.text = $"{Utility.FormatBigNumber(healthUpgradeCost)}";
@@ -56,8 +56,7 @@ public class StatusUI : MonoBehaviour
         if (Player.Instance.Status.Gold >= healthUpgradeCost)
         {
             Player.Instance.Status.Gold -= healthUpgradeCost;
-
-            Player.Instance.Status.MaxHealth += BigInteger.Divide(Player.Instance.Status.MaxHealth * 30, 100);
+            Player.Instance.Status.BaseMaxHealth += BigInteger.Divide(Player.Instance.Status.BaseMaxHealth * 30, 100);
 
             healthUpgradeCost = BigInteger.Divide(healthUpgradeCost * 150, 100);
 
@@ -74,8 +73,7 @@ public class StatusUI : MonoBehaviour
         if (Player.Instance.Status.Gold >= atkUpgradeCost)
         {
             Player.Instance.Status.Gold -= atkUpgradeCost;
-
-            Player.Instance.Status.AttackPower += BigInteger.Divide(Player.Instance.Status.AttackPower * 30, 100);
+            Player.Instance.Status.BaseAttackPower += BigInteger.Divide(Player.Instance.Status.BaseAttackPower * 30, 100);
 
             atkUpgradeCost = BigInteger.Divide(atkUpgradeCost * 150, 100);
 
