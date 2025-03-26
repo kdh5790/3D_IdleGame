@@ -166,18 +166,22 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private IEnumerator IncreasedBonusGoldCoroutine(float percentage, float duration)
     {
         equipGoldBonusPercentage += percentage;
+        OnStatusChanged?.Invoke();
 
         yield return new WaitForSeconds(duration);
 
         equipGoldBonusPercentage -= percentage;
+        OnStatusChanged?.Invoke();
     }
 
     private IEnumerator IncreasedBonusDamageCoroutine(float percentage, float duration)
     {
         equipAttackBonusPercentage += percentage;
+        OnStatusChanged?.Invoke();
 
         yield return new WaitForSeconds(duration);
 
         equipAttackBonusPercentage -= percentage;
+        OnStatusChanged?.Invoke();
     }
 }

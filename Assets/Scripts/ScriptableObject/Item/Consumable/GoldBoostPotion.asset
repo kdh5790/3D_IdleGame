@@ -18,7 +18,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 294acf11d2d2f364485ab4a4be71b1a7, type: 3}
   item:
     rid: 1401560139567464453
-  effectValue: 1.5
+  effectValue: 50
   duration: 60
   references:
     version: 2
