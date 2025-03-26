@@ -4,6 +4,7 @@ using UnityEngine;
 [Serializable]
 public class EnemyAnimationData
 {
+    // 애니메이터 파라미터 이름
     [SerializeField] private string idlePrameterName = "Idle";
     [SerializeField] private string runPrameterName = "Run";
 
@@ -11,6 +12,7 @@ public class EnemyAnimationData
 
     [SerializeField] private string dieParameterName = "Die";
 
+    // 애니메이터 파라미터 이름을 int 값으로 받아올 변수
     public int IdleParameterHash { get; private set; }
     public int RunParameterHash { get; private set; }
 

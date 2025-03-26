@@ -26,6 +26,7 @@ public class InventoryUI : MonoBehaviour
 
         if (gridLayoutGroup != null)
         {
+            // GridLayoutGroup의 자식 순서대로 리스트에 넣기(FindObjectsOfType으로 할 시 리스트에 순서가 섞여서 들어감)
             for (int i = 0; i < gridLayoutGroup.transform.childCount; i++)
             {
                 Transform child = gridLayoutGroup.transform.GetChild(i);
@@ -40,18 +41,20 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("GridLayoutGroup 컴포넌트가 없습니다!");
+            Debug.LogError("GridLayoutGroup 컴포넌트가 없습니다.");
         }
     }
 
     private void Update()
     {
+        // 테스트용 아이템 추가 함수
         if (Input.GetKeyDown(KeyCode.V))
         {
             AddItem(ItemManager.Instance.consumableItemList[0]);
         }
     }
 
+    // 아이템 추가 함수
     public void AddItem(ConsumableItemData item)
     {
         InventorySlot slot = slots.Find(x => x.SlotItem == item);

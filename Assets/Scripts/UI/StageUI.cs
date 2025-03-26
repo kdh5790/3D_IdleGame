@@ -36,18 +36,22 @@ public class StageUI : MonoBehaviour
         UIManager.Instance.RemoveCurrentOpenUI(gameObject);
     }
 
+    // 스테이지 변경 함수(버튼 이벤트)
     private void ChangeStage(int stage)
     {
+        // 스테이지 변경
         StageManager.Instance.ChangeStage(stage);
 
         int currentStage = StageManager.Instance.CurrentStage;
 
+        // 현재 스테이지의 버튼 비활성화
         for (int i = 0; i < stageButtons.Count; i++)
         {
             int stageIndex = i + 1;
             stageButtons[i].interactable = (stageIndex != currentStage);
         }
 
+        // 메인 UI의 스테이지 텍스트 업데이트
         UIManager.Instance.statusViewUi.SetStageText();
     }
 }

@@ -1,6 +1,7 @@
 using System.Numerics;
 using UnityEngine;
 
+// 포션들을 클래스별로 생성 후 효과 적용 함수 추가
 [System.Serializable]
 public class HealthRecoveryPotion : IConsumableItem
 {

@@ -17,7 +17,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     [SerializeField] private float equipGoldBonusPercentage = 0f;
 
     private bool isInvincibility = false;
-    public Action OnStatusChanged;
+    public Action OnStatusChanged; // 플레이어 스탯 변경 시 실행 할 Action
 
     public BigInteger BaseMaxHealth
     {
@@ -29,7 +29,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         }
     }
 
-    public BigInteger TotalMaxHealth
+    public BigInteger TotalMaxHealth // 플레이어 최대 체력과 아이템/장비로 증가한 보너스 수치를 종합한 체력
     {
         get => (BigInteger)((float)BaseMaxHealth * (1 + equipHealthBonusPercentage / 100f));
     }
@@ -64,7 +64,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         }
     }
 
-    public BigInteger TotalAttackPower
+    public BigInteger TotalAttackPower // 플레이어 공격력과 아이템/장비로 증가한 보너스 수치를 종합한 공격력
     {
         get => (BigInteger)((float)BaseAttackPower * (1 + equipAttackBonusPercentage / 100f));
     }
@@ -133,6 +133,11 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         Player.Instance.Anim.SetTrigger("Die");
     }
 
+    /// <summary>
+    /// 무적 적용 함수
+    /// </summary>
+    /// <param name="time">적용 시간</param>
+    /// <returns></returns>
     private IEnumerator ApplyInvincibility(float time)
     {
         isInvincibility = true;
@@ -144,6 +149,10 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         MeshColorChange(Color.white);
     }
 
+    /// <summary>
+    /// 머티리얼 색상 변경 함수
+    /// </summary>
+    /// <param name="color">색상값</param>
     private void MeshColorChange(Color color)
     {
         MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>(true);

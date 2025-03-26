@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private ConsumableItemData slotItem;
+    [SerializeField] private ConsumableItemData slotItem; // 슬롯에 등록된 아이템 정보
     public ConsumableItemData SlotItem { get { return slotItem; } }
 
     [SerializeField] private Image frameImage;
@@ -30,6 +30,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    // 슬롯 세팅 함수
     public void SetSlot(ConsumableItemData item = null)
     {
         if (item == null)
@@ -52,6 +53,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         stackText.text = stack.ToString();
     }
 
+    // 현재 슬롯의 아이템 수량 관리 함수
     public void SetStack(int stack)
     {
         this.stack += stack;

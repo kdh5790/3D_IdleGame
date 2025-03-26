@@ -8,13 +8,13 @@ public class EnemyData : ScriptableObject
 {
     public string enemyName;
 
-    public string maxHealthString;
+    // BigInteger로 변환하기 위한 문자열(반드시 숫자로 입력)
+    public string maxHealthString; 
     public string currentHealthString;
     public string damageString;
-
     public string dropGoldString;
 
-    public List<BaseItemData> dropItemList;
+    public List<BaseItemData> dropItemList; // 드랍 아이템 목록
 
     public BigInteger maxHealth => BigInteger.Parse(maxHealthString);
     public BigInteger currentHealth => BigInteger.Parse(currentHealthString);

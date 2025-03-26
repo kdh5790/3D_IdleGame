@@ -87,6 +87,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    // 데미지 텍스트 생성 함수
     public void ShowDamageText(GameObject target, BigInteger damage)
     {
         if (target == null) return;

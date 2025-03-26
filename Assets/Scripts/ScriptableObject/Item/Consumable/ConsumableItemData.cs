@@ -7,16 +7,16 @@ using UnityEngine;
 public class ConsumableItemData : BaseItemData
 {
     [field:SerializeReference]
-    public IConsumableItem item;
+    public IConsumableItem item; // 커스텀 에디터를 통해 할당
 
-    public float effectValue;   // 효과 값 (예: 회복량, 증가량 등)
-    public float duration;      // 지속 시간 (0이면 즉시 효과)
+    public float effectValue;   // 효과 값 
+    public float duration;      // 지속 시간
 
     public void Use()
     {
         if (item != null)
         {
-            item.UsePotion(effectValue, duration); // 인터페이스 메서드 호출
+            item.UsePotion(effectValue, duration); // 인터페이스 함수 호출
         }
         else
         {

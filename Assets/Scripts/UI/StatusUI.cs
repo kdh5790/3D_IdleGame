@@ -51,13 +51,17 @@ public class StatusUI : MonoBehaviour
     }
 
 
+    // 체력 업그레이드 버튼 클릭 시 실행 되는 함수
     private void OnClickHealthUpgrade()
     {
         if (Player.Instance.Status.Gold >= healthUpgradeCost)
         {
             Player.Instance.Status.Gold -= healthUpgradeCost;
+            // Divide : 하나의 BigInteger 값을 다른 값으로 나눈 후 결과를 반환합니다.
+            // 현재 최대 체력의 30% 증가
             Player.Instance.Status.BaseMaxHealth += BigInteger.Divide(Player.Instance.Status.BaseMaxHealth * 30, 100);
 
+            // 현재 업그레이드 가격의 150% 증가
             healthUpgradeCost = BigInteger.Divide(healthUpgradeCost * 150, 100);
 
             UpdateUI();
