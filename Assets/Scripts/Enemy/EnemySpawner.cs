@@ -1,13 +1,27 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+public class RoomInfo
+{
+    public GameObject enemy;
+    public int roomIndex;
+
+    public RoomInfo(GameObject enemy, int roomIndex)
+    {
+        this.enemy = enemy;
+        this.roomIndex = roomIndex;
+    }
+}
 
 public class EnemySpawner : Singleton<EnemySpawner>
 {
     [SerializeField] private List<GameObject> enemyPrefabs = new List<GameObject>();
     [SerializeField] private List<RoomBehaviour> rooms = new List<RoomBehaviour>();
 
-    public List<GameObject> enemies = new List<GameObject>();
-        
+    public List<RoomInfo> enemies = new List<RoomInfo>();
+
     private void Awake()
     {
         Initialized();
@@ -15,22 +29,57 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     public void Initialized()
     {
-        enemyPrefabs.AddRange(Resources.LoadAll<GameObject>($"Prefabs/Enemy/Stage{1}"));
-        rooms.AddRange(GetComponentsInChildren<RoomBehaviour>());
+        enemyPrefabs = Resources.LoadAll<GameObject>($"Prefabs/Enemy/Stage{1}").ToList();
+        rooms = GetComponentsInChildren<RoomBehaviour>().ToList();
         enemies.Clear();
 
-        foreach (var room in rooms)
+
+        for (int i = 0; i < rooms.Count; i++)
         {
-            if (!room.GetHasEnemy() && !(Vector3.Distance(Player.Instance.transform.position, room.transform.position) < 1f))
+            if (!rooms[i].GetHasEnemy() && !(Vector3.Distance(Player.Instance.transform.position, rooms[i].transform.position) < 1f))
             {
                 bool isSpawnEnemy = (Random.Range(0, 2) == 1);
 
                 if (isSpawnEnemy)
                 {
-                    GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], room.transform.position, Quaternion.identity);
-                    room.SetHasEnemy(isSpawnEnemy);
-                    enemies.Add(enemy);
+                    GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], rooms[i].transform.position, Quaternion.identity);
+                    rooms[i].SetHasEnemy(isSpawnEnemy);
+                    enemies.Add(new RoomInfo(enemy, i));
                 }
+            }
+        }
+    }
+
+    public void RemoveEnemy(GameObject enemy)
+    {
+        RoomInfo info = enemies.Find(x => x.enemy == enemy);
+
+        if (info != null)
+        {
+            rooms[info.roomIndex].SetHasEnemy(false);
+            enemies.Remove(info);
+        }
+
+        StartCoroutine(SpawnEnemy());
+    }
+
+    private IEnumerator SpawnEnemy()
+    {
+        yield return new WaitForSeconds(3f);
+
+        while (true)
+        {
+            int randomRoomNum = Random.Range(0, rooms.Count);
+
+            if (!rooms[randomRoomNum].GetHasEnemy())
+            {
+                GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], rooms[randomRoomNum].transform.position, Quaternion.identity);
+                rooms[randomRoomNum].SetHasEnemy(true);
+                enemies.Add(new RoomInfo(enemy, randomRoomNum));
+
+                Debug.Log($"{randomRoomNum}번 방에 몬스터가 리스폰 되었습니다.");
+
+                break; 
             }
         }
     }
