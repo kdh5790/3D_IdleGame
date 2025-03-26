@@ -16,3 +16,9 @@ MonoBehaviour:
   maxHealthString: 800
   currentHealthString: 800
   damageString: 75
+  dropGoldString: 5000
+  dropItemList:
+  - {fileID: 11400000, guid: 1bcb0bc1d7768b148823d5ae6c63930f, type: 2}
+  - {fileID: 11400000, guid: 54061b3de76ec5a4e8de1388cb8098ff, type: 2}
+  - {fileID: 11400000, guid: 63001d7b989ecff4cafa379bbeca52e5, type: 2}
+  - {fileID: 11400000, guid: 89f8fd141c20a0b48aba3dff959de207, type: 2}

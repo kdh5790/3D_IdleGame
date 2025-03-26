@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
@@ -10,12 +11,17 @@ public class UIManager : Singleton<UIManager>
 
     private Stack<GameObject> openUIStack = new Stack<GameObject>();
 
+    [SerializeField] private GameObject damageTextPrefab;
+
+    private Canvas canvas;
+
     void Start()
     {
         statusViewUi = GetComponentInChildren<StatusViewUI>(true);
         inventoryUI = GetComponentInChildren<InventoryUI>(true);
         equipmentUI = GetComponentInChildren<EquipmentUI>(true);
         statusUI = GetComponentInChildren<StatusUI>(true);
+        canvas = GetComponent<Canvas>();
     }
 
     public void AddCurrentOpenUI(GameObject uiObject)
@@ -80,6 +86,19 @@ public class UIManager : Singleton<UIManager>
         {
             Debug.Log("닫을 UI가 없습니다.");
         }
+    }
+
+    public void ShowDamageText(GameObject target, BigInteger damage)
+    {
+        if (target == null) return;
+
+        GameObject damageTextGO = Instantiate(damageTextPrefab, Camera.main.WorldToScreenPoint(target.transform.position), UnityEngine.Quaternion.identity, transform);
+        DamageText damageText = damageTextGO.GetComponent<DamageText>();
+
+        damageText.Initialized(damage);
+
+        int randNum = Random.Range(30, 60);
+        damageTextGO.GetComponent<RectTransform>().position = new UnityEngine.Vector2(damageTextGO.GetComponent<RectTransform>().position.x + randNum, damageTextGO.GetComponent<RectTransform>().position.y + randNum);
     }
 
     private void Update()

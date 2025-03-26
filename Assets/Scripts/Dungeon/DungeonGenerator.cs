@@ -55,6 +55,7 @@ public class DungeonGenerator : MonoBehaviour
 
     void GenerateDungeon()
     {
+        DestroyDungeon();
 
         for (int i = 0; i < size.x; i++)
         {
@@ -220,7 +221,7 @@ public class DungeonGenerator : MonoBehaviour
         return neighbors;
     }
 
-    public void GenerateDungeonButton()
+    public void DestroyDungeon()
     {
         RoomBehaviour[] rooms = FindObjectsOfType<RoomBehaviour>();
 
@@ -228,17 +229,17 @@ public class DungeonGenerator : MonoBehaviour
         {
             DestroyImmediate(room.gameObject);
         }
+    }
+
+    public void GenerateDungeonButton()
+    {
+        DestroyDungeon();
 
         MazeGenerator();
     }
 
     public void DestroyDungeonButton()
     {
-        RoomBehaviour[] rooms = FindObjectsOfType<RoomBehaviour>();
-
-        foreach (RoomBehaviour room in rooms)
-        {
-            DestroyImmediate(room.gameObject);
-        }
+        DestroyDungeon();
     }
 }
