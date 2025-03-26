@@ -26,6 +26,11 @@ public class PlayerAI : MonoBehaviour
     {
         attackTimer -= Time.deltaTime; // 공격 타이머 감소
 
+        if (currentTarget != null && currentTarget.TryGetComponent(out IDamageable damageable) && damageable.isDie)
+        {
+            currentTarget = null;
+        }
+
         FindClosestTarget(); // 가장 가까운 적을 찾음
 
         if (currentTarget != null) // 타겟이 있는 경우
@@ -49,9 +54,9 @@ public class PlayerAI : MonoBehaviour
 
     private void FindClosestTarget()
     {
-        var enemies = EnemySpawner.Instance.enemies;
+        var roomInfos = EnemySpawner.Instance.enemies;
 
-        if (enemies.Count == 0)
+        if (roomInfos.Count == 0)
         {
             currentTarget = null;
             return;
@@ -60,16 +65,18 @@ public class PlayerAI : MonoBehaviour
         GameObject closestEnemy = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach (var enemy in enemies)
+        foreach (var roomInfo in roomInfos)
         {
-            if (enemy == null) continue;
+            if (roomInfo.enemy == null) continue;
 
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (roomInfo.enemy.TryGetComponent(out IDamageable damageable) && damageable.isDie) continue;
+
+            float distance = Vector3.Distance(transform.position, roomInfo.enemy.transform.position);
 
             if (distance < closestDistance)
             {
                 closestDistance = distance;
-                closestEnemy = enemy;
+                closestEnemy = roomInfo.enemy;
             }
         }
 
@@ -111,5 +118,14 @@ public class PlayerAI : MonoBehaviour
     public void ResetAttack()
     {
         player.Anim.SetBool(animationData.ComboAttackParameterHash, false); 
+        if(currentTarget != null)
+        {
+            if(currentTarget.TryGetComponent(out IDamageable enemy))
+            {
+                enemy.OnDamaged(player.Status.TotalAttackPower);
+            }
+        }
     }
+
+    public void StopAI() => agent.isStopped = true;
 }

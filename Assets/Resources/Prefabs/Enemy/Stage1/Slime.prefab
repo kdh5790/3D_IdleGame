@@ -139,8 +139,9 @@ GameObject:
   - component: {fileID: 8438482761950976232}
   - component: {fileID: 7741521532414610388}
   - component: {fileID: 2352521935523645334}
-  - component: {fileID: 6306252223732335165}
   - component: {fileID: -7211226612589586615}
+  - component: {fileID: 6306252223732335165}
+  - component: {fileID: 7936524450426455719}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -210,25 +211,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6306252223732335165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3380767022484965095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d817b4d8f70d0dd4eb0c9cce96b24312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationData:
-    idlePrameterName: Idle
-    runPrameterName: Run
-    attackPrameterName: Attack
-    dieParameterName: Die
-  attackRange: 2
-  attackCooldown: 1
 --- !u!95 &-7211226612589586615
 Animator:
   serializedVersion: 5
@@ -250,6 +232,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6306252223732335165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380767022484965095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d817b4d8f70d0dd4eb0c9cce96b24312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationData:
+    idlePrameterName: Idle
+    runPrameterName: Run
+    attackPrameterName: Attack
+    dieParameterName: Die
+  attackRange: 2
+  attackCooldown: 1
+--- !u!114 &7936524450426455719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380767022484965095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01323005f2b62c846be5c765b8dbd6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: dc03c16d94827dd438cac1d119d0f030, type: 2}
 --- !u!1 &4617271046609944419
 GameObject:
   m_ObjectHideFlags: 0

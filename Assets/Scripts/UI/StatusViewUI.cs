@@ -16,6 +16,8 @@ public class StatusViewUI : MonoBehaviour
     private void Start()
     {
         Player.Instance.Status.OnStatusChanged += UpdateUI;
+
+        UpdateUI();
     }
 
     private void UpdateUI()

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Numerics;
-using UnityEngine;
 
 public interface IConsumableItem
 {
@@ -11,4 +8,5 @@ public interface IConsumableItem
 public interface IDamageable
 {
     void OnDamaged(BigInteger damage);
+    public bool isDie {  get; set; }
 }

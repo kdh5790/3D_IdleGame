@@ -8,10 +8,11 @@ public class EnemyData : ScriptableObject
 {
     public string enemyName;
 
-    public BigInteger maxHealth;
-    public BigInteger currentHealth;
+    public string maxHealthString;
+    public string currentHealthString;
+    public string damageString;
 
-    public BigInteger damage;
-
-    public GameObject enemyPrefab;
+    public BigInteger maxHealth => BigInteger.Parse(maxHealthString);
+    public BigInteger currentHealth => BigInteger.Parse(currentHealthString);
+    public BigInteger damage => BigInteger.Parse(damageString);
 }

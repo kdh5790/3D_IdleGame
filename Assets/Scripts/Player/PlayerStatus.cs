@@ -98,6 +98,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         }
     }
 
+    public bool isDie { get; set; } = false;
+
     private void Start()
     {
         CurrentHealth = TotalMaxHealth;
@@ -120,8 +122,15 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
         if(CurrentHealth == 0)
         {
-            // Ä³¸¯ÅÍ »ç¸Á
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Player.Instance.AI.StopAI();
+        isDie = true;
+        Player.Instance.Anim.SetTrigger("Die");
     }
 
     private IEnumerator ApplyInvincibility(float time)
