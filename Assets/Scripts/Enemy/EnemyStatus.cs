@@ -50,6 +50,27 @@ public class EnemyStatus : MonoBehaviour, IDamageable
 
         Player.Instance.Status.Gold += (BigInteger)((float)enemyData.dropGold * (1 + Player.Instance.Status.EquipGoldBonusPercentage / 100f));
 
+        BaseItemData dropItem;
+
+        if (Random.Range(0, 100) < 50)
+        {
+            if (enemyData.dropItemList != null && enemyData.dropItemList.Count > 0)
+            {
+                dropItem = enemyData.dropItemList[Random.Range(0, enemyData.dropItemList.Count)];
+
+                if (dropItem is ConsumableItemData)
+                {
+                    Debug.Log($"{dropItem.name} È¹µæ");
+                    UIManager.Instance.inventoryUI.AddItem((ConsumableItemData)dropItem);
+                }
+                else if (dropItem is EquipmentItemData)
+                {
+                    Debug.Log($"{dropItem.name} È¹µæ");
+                    UIManager.Instance.equipmentUI.AddItem((EquipmentItemData)dropItem);
+                }
+            }
+        }
+
         Destroy(gameObject, 2f); 
     }
 
