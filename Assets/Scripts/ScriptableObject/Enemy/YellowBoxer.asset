@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4115102f72a644982bd171fc62c974, type: 3}
+  m_Name: YellowBoxer
+  m_EditorClassIdentifier: 
+  enemyName: YellowBoxer
+  maxHealthString: 7500
+  currentHealthString: 7500
+  damageString: 250
+  dropGoldString: 47000
+  dropItemList:
+  - {fileID: 11400000, guid: 1bcb0bc1d7768b148823d5ae6c63930f, type: 2}
+  - {fileID: 11400000, guid: 54061b3de76ec5a4e8de1388cb8098ff, type: 2}
+  - {fileID: 11400000, guid: 63001d7b989ecff4cafa379bbeca52e5, type: 2}
+  - {fileID: 11400000, guid: a9b55795c6da41a4885323694c4ba12b, type: 2}
