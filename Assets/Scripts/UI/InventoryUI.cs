@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,16 +21,26 @@ public class InventoryUI : MonoBehaviour
     {
         closeButton.onClick.AddListener(OnClickCloseButton);
         useButton.onClick.AddListener(OnClickUseButton);
-        slots.AddRange(FindObjectsOfType<InventorySlot>(true));
 
-        if (slots != null)
+        GridLayoutGroup gridLayoutGroup = GetComponentInChildren<GridLayoutGroup>();
+
+        if (gridLayoutGroup != null)
         {
-            foreach (InventorySlot slot in slots)
+            for (int i = 0; i < gridLayoutGroup.transform.childCount; i++)
             {
-                slot.SetSlot();
-            }
+                Transform child = gridLayoutGroup.transform.GetChild(i);
+                InventorySlot slot = child.GetComponent<InventorySlot>();
 
-            slots.Reverse();
+                if (slot != null)
+                {
+                    slots.Add(slot);
+                    slot.SetSlot();
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("GridLayoutGroup 컴포넌트가 없습니다!");
         }
     }
 
