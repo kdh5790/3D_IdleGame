@@ -159,4 +159,25 @@ public class PlayerStatus : MonoBehaviour, IDamageable
             renderer.material.color = color;
         }
     }
+
+    public void IncreasedBonusGold(float percentage, float duration) => StartCoroutine(IncreasedBonusGoldCoroutine(percentage, duration));
+    public void IncreasedBonusDamage(float percentage, float duration) => StartCoroutine(IncreasedBonusDamageCoroutine(percentage, duration));
+
+    private IEnumerator IncreasedBonusGoldCoroutine(float percentage, float duration)
+    {
+        equipGoldBonusPercentage += percentage;
+
+        yield return new WaitForSeconds(duration);
+
+        equipGoldBonusPercentage -= percentage;
+    }
+
+    private IEnumerator IncreasedBonusDamageCoroutine(float percentage, float duration)
+    {
+        equipAttackBonusPercentage += percentage;
+
+        yield return new WaitForSeconds(duration);
+
+        equipAttackBonusPercentage -= percentage;
+    }
 }

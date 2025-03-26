@@ -16,7 +16,7 @@ public class ConsumableItemData : BaseItemData
     {
         if (item != null)
         {
-            item.UsePotion(); // 인터페이스 메서드 호출
+            item.UsePotion(effectValue, duration); // 인터페이스 메서드 호출
         }
         else
         {
