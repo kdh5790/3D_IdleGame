@@ -9,7 +9,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     [SerializeField] private BigInteger baseMaxHealth = 1500;
     private BigInteger currentHealth;
 
-    [SerializeField] private BigInteger gold = 0;
+    [SerializeField] private BigInteger gold = 10000000000000;
     [SerializeField] private BigInteger baseAttackPower = 200;
 
     [SerializeField] private float equipHealthBonusPercentage = 0f; 

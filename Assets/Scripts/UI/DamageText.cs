@@ -14,7 +14,9 @@ public class DamageText : MonoBehaviour
     {
         moveSpeed = 70f;
 
-        text.text = damage.ToString();
+        text.text = Utility.FormatBigNumber(damage);
+
+        transform.SetAsFirstSibling();
 
         StartCoroutine(MoveText());
 
