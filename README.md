@@ -1,6 +1,5 @@
 # 3D_IdleGame
 
-개인과제로 제작한 3D 방치형 게임입니다.
 
  ## 게임 시작
 ![녹화_2025_03_26_22_03_40_507](https://github.com/user-attachments/assets/bc7ded61-5b0c-4255-ad3e-30c721dc5528)
