@@ -12,7 +12,12 @@ public class EnemyData : ScriptableObject
     public string currentHealthString;
     public string damageString;
 
+    public string dropGoldString;
+
+    public List<BaseItemData> dropItemList;
+
     public BigInteger maxHealth => BigInteger.Parse(maxHealthString);
     public BigInteger currentHealth => BigInteger.Parse(currentHealthString);
     public BigInteger damage => BigInteger.Parse(damageString);
+    public BigInteger dropGold => BigInteger.Parse(dropGoldString);
 }

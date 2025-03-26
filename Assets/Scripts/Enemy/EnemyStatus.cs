@@ -31,6 +31,7 @@ public class EnemyStatus : MonoBehaviour, IDamageable
         if (isInvincibility) return;
 
         currentHealth = BigInteger.Max(0, currentHealth - damage);
+        UIManager.Instance.ShowDamageText(gameObject, damage);
         StartCoroutine(ApplyInvincibility(0.3f));
 
         if (currentHealth == 0)
@@ -46,6 +47,8 @@ public class EnemyStatus : MonoBehaviour, IDamageable
         enemyAi.StopAI();
 
         EnemySpawner.Instance.RemoveEnemy(gameObject);
+
+        Player.Instance.Status.Gold += (BigInteger)((float)enemyData.dropGold * (1 + Player.Instance.Status.EquipGoldBonusPercentage / 100f));
 
         Destroy(gameObject, 2f); 
     }
