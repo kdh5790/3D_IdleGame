@@ -38,9 +38,9 @@ public class DungeonGenerator : MonoBehaviour
     public Rule[] rooms;
     public Vector2 offset;
 
-    List<Cell> board;
+    private List<Cell> board;
 
-    void Start()
+    private void Start()
     {
         MazeGenerator();
 
@@ -50,13 +50,10 @@ public class DungeonGenerator : MonoBehaviour
         surface.BuildNavMesh();
 
         gameObject.AddComponent<EnemySpawner>();
-
     }
 
-    void GenerateDungeon()
+    private void GenerateDungeon()
     {
-        DestroyDungeon();
-
         for (int i = 0; i < size.x; i++)
         {
             for (int j = 0; j < size.y; j++)
@@ -105,7 +102,7 @@ public class DungeonGenerator : MonoBehaviour
 
     }
 
-    void MazeGenerator()
+    public void MazeGenerator()
     {
         board = new List<Cell>();
 
@@ -190,29 +187,25 @@ public class DungeonGenerator : MonoBehaviour
         GenerateDungeon();
     }
 
-    List<int> CheckNeighbors(int cell)
+    private List<int> CheckNeighbors(int cell)
     {
         List<int> neighbors = new List<int>();
 
-        //check up neighbor
         if (cell - size.x >= 0 && !board[(cell - size.x)].visited)
         {
             neighbors.Add((cell - size.x));
         }
 
-        //check down neighbor
         if (cell + size.x < board.Count && !board[(cell + size.x)].visited)
         {
             neighbors.Add((cell + size.x));
         }
 
-        //check right neighbor
         if ((cell + 1) % size.x != 0 && !board[(cell + 1)].visited)
         {
             neighbors.Add((cell + 1));
         }
 
-        //check left neighbor
         if (cell % size.x != 0 && !board[(cell - 1)].visited)
         {
             neighbors.Add((cell - 1));
@@ -227,7 +220,7 @@ public class DungeonGenerator : MonoBehaviour
 
         foreach (RoomBehaviour room in rooms)
         {
-            DestroyImmediate(room.gameObject);
+            Destroy(room.gameObject);
         }
     }
 

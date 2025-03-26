@@ -20,7 +20,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
     [SerializeField] private List<GameObject> enemyPrefabs = new List<GameObject>();
     [SerializeField] private List<RoomBehaviour> rooms = new List<RoomBehaviour>();
 
-    public List<RoomInfo> enemies = new List<RoomInfo>();
+    public List<RoomInfo> roomInfos = new List<RoomInfo>();
 
     private void Awake()
     {
@@ -29,9 +29,18 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     public void Initialized()
     {
-        enemyPrefabs = Resources.LoadAll<GameObject>($"Prefabs/Enemy/Stage{1}").ToList();
+        enemyPrefabs = Resources.LoadAll<GameObject>($"Prefabs/Enemy/Stage{StageManager.Instance.CurrentStage}").ToList();
         rooms = GetComponentsInChildren<RoomBehaviour>().ToList();
-        enemies.Clear();
+
+        foreach ( var roomInfo in roomInfos )
+        {
+            if(roomInfo.enemy != null)
+            {
+                Destroy(roomInfo.enemy);
+            }
+        }
+
+        roomInfos.Clear();
 
 
         for (int i = 0; i < rooms.Count; i++)
@@ -44,7 +53,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
                 {
                     GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], rooms[i].transform.position, Quaternion.identity);
                     rooms[i].SetHasEnemy(isSpawnEnemy);
-                    enemies.Add(new RoomInfo(enemy, i));
+                    roomInfos.Add(new RoomInfo(enemy, i));
                 }
             }
         }
@@ -52,12 +61,12 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     public void RemoveEnemy(GameObject enemy)
     {
-        RoomInfo info = enemies.Find(x => x.enemy == enemy);
+        RoomInfo info = roomInfos.Find(x => x.enemy == enemy);
 
         if (info != null)
         {
             rooms[info.roomIndex].SetHasEnemy(false);
-            enemies.Remove(info);
+            roomInfos.Remove(info);
         }
 
         StartCoroutine(SpawnEnemy());
@@ -75,7 +84,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
             {
                 GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], rooms[randomRoomNum].transform.position, Quaternion.identity);
                 rooms[randomRoomNum].SetHasEnemy(true);
-                enemies.Add(new RoomInfo(enemy, randomRoomNum));
+                roomInfos.Add(new RoomInfo(enemy, randomRoomNum));
 
                 Debug.Log($"{randomRoomNum}번 방에 몬스터가 리스폰 되었습니다.");
 

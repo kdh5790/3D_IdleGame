@@ -54,7 +54,7 @@ public class PlayerAI : MonoBehaviour
 
     private void FindClosestTarget()
     {
-        var roomInfos = EnemySpawner.Instance.enemies;
+        var roomInfos = EnemySpawner.Instance.roomInfos;
 
         if (roomInfos.Count == 0)
         {

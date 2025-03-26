@@ -8,12 +8,11 @@ public class UIManager : Singleton<UIManager>
     public InventoryUI inventoryUI;
     public EquipmentUI equipmentUI;
     public StatusUI statusUI;
+    public StageUI stageUI;
 
     private Stack<GameObject> openUIStack = new Stack<GameObject>();
 
     [SerializeField] private GameObject damageTextPrefab;
-
-    private Canvas canvas;
 
     void Start()
     {
@@ -21,7 +20,7 @@ public class UIManager : Singleton<UIManager>
         inventoryUI = GetComponentInChildren<InventoryUI>(true);
         equipmentUI = GetComponentInChildren<EquipmentUI>(true);
         statusUI = GetComponentInChildren<StatusUI>(true);
-        canvas = GetComponent<Canvas>();
+        stageUI = GetComponentInChildren<StageUI>(true);
     }
 
     public void AddCurrentOpenUI(GameObject uiObject)

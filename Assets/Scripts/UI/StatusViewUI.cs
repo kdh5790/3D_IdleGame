@@ -10,6 +10,7 @@ public class StatusViewUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI atkText;
+    [SerializeField] private TextMeshProUGUI stageText;
 
     [SerializeField] private Image healthImage;
 
@@ -25,6 +26,7 @@ public class StatusViewUI : MonoBehaviour
         SetHealthText();
         SetGoldText();
         SetAtkText();
+        SetStageText();
         UpdateHealthBar();
     }
 
@@ -33,6 +35,8 @@ public class StatusViewUI : MonoBehaviour
     public void SetGoldText() => goldText.text = Utility.FormatBigNumber(Player.Instance.Status.Gold);
 
     public void SetAtkText() => atkText.text = Utility.FormatBigNumber(Player.Instance.Status.TotalAttackPower);
+
+    public void SetStageText() => stageText.text = $"Stage{StageManager.Instance.CurrentStage}";
 
     public void UpdateHealthBar()
     {
